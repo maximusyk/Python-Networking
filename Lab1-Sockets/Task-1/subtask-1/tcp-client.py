@@ -1,18 +1,9 @@
 import socket
-from datetime import datetime
 
+ADDRESS = ('127.0.0.1', 5050)
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'  # ip - адреса хоста
-port = 5555  # номер порта
+client.connect(ADDRESS)
 
-server_socket.bind((host, port))  # зв'язування ip адреси з номером порта
-server_socket.listen(5)
-print('The server is waiting for connection......')
-
-clientsocket, addr = server_socket.accept()
-client_message = clientsocket.recv(1024)
-print('Client message:' + client_message.decode('utf-8') +
-      "\nTime to receive the message:" + str(datetime.now()))
-
-server_socket.close()
+client.send(input(f"Enter message to {ADDRESS[0]} -> ").encode('utf-8'))
+client.close()

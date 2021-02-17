@@ -1,29 +1,43 @@
+"""
+      1 - Send message to the server and print it with sended time.
+      2 - Send message to the server, which repeat this message after 5 sec.
+      3 - Send few message to the server; Server can stop
+      connections after command.
+      4 - Server with few connections.
+      5 - Server with nonblocking mode.
+"""
+
+
 import socket
 from datetime import datetime
 import time
 import sys
 
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'  # ip - адреса хоста
-port = 5555  # номер порта
+ADDRESS = ('127.0.0.1', 5050)
+FORMAT = 'utf-8'
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_socket.bind((host, port))  # зв'язування ip адреси з номером порта
-server_socket.listen(5)
-print('The server is waiting for connection......')
+server.bind(ADDRESS)
+server.listen()
+print("\n[STARTING] Server is starting...")
+print(f"[LISTENING] Server is listening on {ADDRESS[0]}")
 
-# while True:
-client_socket, addr = server_socket.accept()
-# print('Got a connection from {}'.format(addr))
-# clientsocket.send('What is your name?'.encode('utf-8'))
-client_message = client_socket.recv(1024).decode('utf-8')
-print('Client message: ' + client_message +
-      "\nTime to receive the message: " + str(datetime.now()))
+client, addr = server.accept()
+message = client.recv(1024).decode(FORMAT)
+timeM = datetime.now().strftime('%H:%M:%S')
+
+print(
+    f"\nClient message -> {message}\nReceiving time -> {timeM}")
+
+print("\n[WAITING] Server waiting 5 sec to send...")
 time.sleep(5)
-size_resv_bytes = client_socket.send(client_message.encode('utf-8'))
-# перевірка, чи всі дані були надіслані
-if size_resv_bytes == len(client_message):
-    print("All data sent successfully")
-else:
-    print("!!!Error when sending data!!!")
-server_socket.close()
+
+rcvByteSize = client.send(message.encode(FORMAT))
+dataCheck = "[SUCCESS] Sending was successfull" if rcvByteSize == len(
+    message) else "[ERROR] Failed to send"
+
+print(dataCheck)
+
+print("\n[CLOSING] Server is closing...")
+server.close()

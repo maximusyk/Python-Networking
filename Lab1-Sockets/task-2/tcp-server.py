@@ -1,29 +1,67 @@
 import socket
-from datetime import datetime
-import time
-import sys
+import threading
 
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'  # ip - адреса хоста
-port = 5555  # номер порта
+ADDRESS = ('127.0.0.1', 5050)
+FORMAT = 'utf-8'
 
-server_socket.bind((host, port))  # зв'язування ip адреси з номером порта
-server_socket.listen(5)
-print('The server is waiting for connection......')
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(ADDRESS)
+server.listen()
 
-# while True:
-client_socket, addr = server_socket.accept()
-# print('Got a connection from {}'.format(addr))
-# clientsocket.send('What is your name?'.encode('utf-8'))
-client_message = client_socket.recv(1024).decode('utf-8')
-print('Client message: ' + client_message +
-      "\nTime to receive the message: " + str(datetime.now()))
-time.sleep(5)
-size_resv_bytes = client_socket.send(client_message.encode('utf-8'))
-# перевірка, чи всі дані були надіслані
-if size_resv_bytes == len(client_message):
-    print("All data sent successfully")
-else:
-    print("!!!Error when sending data!!!")
-server_socket.close()
+
+clients = []
+nicknames = []
+
+
+def broadcast(msg):
+    for client in clients:
+        client.send(msg)
+
+
+def handleClient(client):
+    while True:
+        try:
+            msg = client.recv(1024)
+            if msg.decode(FORMAT)[-4:] == "left":
+                index = clients.index(client)
+                clients.remove(client)
+                client.close()
+                nickname = nicknames[index]
+                broadcast(f'{nickname} left the chat'.encode(FORMAT))
+                nicknames.remove(nickname)
+                break
+            else:
+                broadcast(msg)
+        except:
+            index = client.index(client)
+            clients.remove(client)
+            client.close()
+            nickname = nicknames[index]
+            broadcast(f'{nickname} left the chat'.encode(FORMAT))
+            nicknames.remove(nickname)
+            break
+
+
+def receive():
+    print(f"[LISTENING] Server is listening on {ADDRESS[0]}")
+    while True:
+        client, addr = server.accept()
+
+        client.send("NICK".encode(FORMAT))
+        nickname = client.recv(1024).decode(FORMAT)
+        nicknames.append(nickname)
+        clients.append(client)
+
+        print(
+            f"\n[NEW CONNECTION] {addr} connected with nickname -> {nickname}")
+        broadcast(f"{nickname} joined the chat!".encode(FORMAT))
+        client.send('Connected to the server!'.encode(FORMAT))
+
+        thread = threading.Thread(target=handleClient, args=(client,))
+        thread.start()
+        print(f"[ACTIVE CONNECTIONS] {threading.activeCount()-1}")
+
+
+print("\n[STARTING] Server is starting...")
+receive()

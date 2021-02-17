@@ -3,18 +3,23 @@ from datetime import datetime
 import time
 
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'
-port = 5555
+ADDRESS = ('127.0.0.1', 5050)
+FORMAT = 'utf-8'
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_socket.bind((host, port))
-server_socket.listen(5)
-print('The server is waiting for connection......')
-client_socket, addr = server_socket.accept()
+server.bind(ADDRESS)
+server.listen()
+print("\n[STARTING] Server is starting...")
+print(f"[LISTENING] Server is listening on {ADDRESS[0]}")
+
+client, addr = server.accept()
+
 while True:
-    client_message = client_socket.recv(1024)
-    if client_message.decode('utf-8') == 'stop':
-        server_socket.close()
+    message = client.recv(1024).decode(FORMAT)
+    if message == 'd' or message == 'D':
+        print("\n[CLOSING] Server is closing...")
+        server.close()
         break
-    print('Client message:' + client_message.decode('utf-8') +
-          "\nTime to receive the message:" + str(datetime.now()))
+    timeM = datetime.now().strftime('%H:%M:%S')
+    print(
+        f"\nClient message -> {message}\nReceiving time -> {timeM}")

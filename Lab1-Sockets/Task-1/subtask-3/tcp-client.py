@@ -1,14 +1,15 @@
 import socket
 
 
-socket_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'
-port = 5555
+ADDRESS = ('127.0.0.1', 5050)
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-socket_client.connect((host, port))  # встановлення з'єднання
+client.connect(ADDRESS)
+
 while True:
-    message = input("Enter message from client:\n")
-    socket_client.send(message.encode('utf-8'))
-    if message == 'stop':
-        socket_client.close()
+    message = input(
+        f"Enter message to {ADDRESS[0]}(type \'d\' to disconnect) -> ")
+    client.send(message.encode('utf-8'))
+    if message == 'd' or message == 'D':
+        client.close()
         break
