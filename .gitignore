@@ -3,5 +3,6 @@ Lab1-Sockets/README-Lab1.pdf
 Lab2-CGI/test.html
 Lab2-CGI/README-Lab2.pdf
 .DS_Store
-Lab1-Sockets/.DS_Store
-Lab2-CGI/.DS_Store
+._.DS_Store
+**/.DS_Store
+../._.DS_Store
