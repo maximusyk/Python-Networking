@@ -1,12 +1,10 @@
 .vscode
-Lab1-Sockets/README-Lab1.pdf
+README-*.pdf
 Lab2-CGI/test.html
-Lab2-CGI/README-Lab2.pdf
+MyResume
+venv/
+__pycache__
 .DS_Store
 ._.DS_Store
 **/.DS_Store
 ../._.DS_Store
-MyResume
-Lab3-FlaskPortfolio/venv/
-Lab3-FlaskPortfolio/__pycache__
-Lab3-FlaskPortfolio/README-Lab3.pdf
