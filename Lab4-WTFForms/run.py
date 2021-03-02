@@ -1,6 +1,4 @@
-from portfolio import createApp
+from portfolio import app
+from portfolio import views
 
-app = createApp()
-
-if __name__ == '__main__':
-    app.run()
+app.run()
