@@ -8,6 +8,6 @@ class Config(object):
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 5050
     MAIL_USERNAME = '22usyk08@gmail.com'
-    MAIL_PASSWORD = '***'  # MfCisRED1231N!
+    MAIL_PASSWORD = '***'
     MAIL_USE_TLS = False
     MAILS_USE_SSL = True
