@@ -10,48 +10,48 @@
 
 ###### Starting the Server
 
-![Project Structure](./screens/server-start.png)
+![Starting the Server](./screens/server-start.png)
 
 ###### Home Page
 
-![Project Structure](./screens/home-1.png)
+![Home Page-1](./screens/home-1.png)
 
-![Project Structure](./screens/home-2.png)
+![Home Page-2](./screens/home-2.png)
 
 ###### About Page
 
-![Project Structure](./screens/about-1.png)
+![About Page-1](./screens/about-1.png)
 
-![Project Structure](./screens/about-2.png)
+![About Page-2](./screens/about-2.png)
 
 ###### Portfolio Page
 
-![Project Structure](./screens/portfolio-1.png)
+![Portfolio Page-1](./screens/portfolio-1.png)
 
-![Project Structure](./screens/portfolio-2.png)
+![Portfolio Page-2](./screens/portfolio-2.png)
 
 ###### Contact Page
 
-![Project Structure](./screens/contact-1.png)
+![Contact Page-1](./screens/contact-1.png)
 
-![Project Structure](./screens/contact-2.png)
+![Contact Page-2](./screens/contact-2.png)
 
 ###### OS Info
 
-![Project Structure](./screens/modal-os.png)
+![OS Info](./screens/modal-os.png)
 
 ###### User-Agent Info
 
-![Project Structure](./screens/modal-ua.png)
+![User-Agent Info](./screens/modal-ua.png)
 
 ###### Python Version
 
-![Project Structure](./screens/modal-py.png)
+![Python Version](./screens/modal-py.png)
 
 ###### Time
 
-![Project Structure](./screens/modal-time.png)
+![Time](./screens/modal-time.png)
 
 ###### Ending the Server
 
-![Project Structure](./screens/server-end.png)
+![Ending the Server](./screens/server-end.png)

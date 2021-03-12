@@ -29,7 +29,6 @@ def writeJSON(data, filename='dump.json'):
 @app.route('/')
 @app.route('/hero')
 def index():
-    session.clear()
     return render_template('index.html', menu=menu, my_os=os.uname(),
                            user_agent=request.headers.get('User-Agent'), version=sys.version,
                            time_now=datetime.now().strftime("%H:%M"))
@@ -37,7 +36,6 @@ def index():
 
 @app.route('/about')
 def about():
-    session.clear()
     return render_template('about.html', menu=menu, my_os=os.uname(),
                            user_agent=request.headers.get('User-Agent'), version=sys.version,
                            time_now=datetime.now().strftime("%H:%M"))
@@ -60,7 +58,8 @@ def contact():
     isValidMessage = ""
     if request.method == 'POST':
         if 'name' in session and 'email' in session:
-            print(f"Name -> {session.get('name')}\nEmail -> {session.get('email')}")
+            print(
+                f"Name -> {session.get('name')}\nEmail -> {session.get('email')}")
             form.name.data = session.get('name')
             form.email.data = session.get('email')
             if form.validate_on_submit():
@@ -68,8 +67,9 @@ def contact():
                 msg = request.form['message']
                 with open('dump.json') as jsonFile:
                     data = json.load(jsonFile)
-                    temp=data['usrMessages']
-                    temp.append({'Name': form.name.data, 'Email': form.email.data, 'Subject': form.subject.data, 'Message': form.message.data})
+                    temp = data['usrMessages']
+                    temp.append({'Name': form.name.data, 'Email': form.email.data,
+                                 'Subject': form.subject.data, 'Message': form.message.data})
                 writeJSON(data)
                 flash(u'Your message has been sent. Thank you!', 'message')
                 return redirect(url_for('contact'))
@@ -81,12 +81,13 @@ def contact():
                 usrEmail = form.email.data
                 sbj = form.subject.data
                 msg = form.message.data
-                session['name']=usrName
-                session['email']=usrEmail
+                session['name'] = usrName
+                session['email'] = usrEmail
                 with open('dump.json') as jsonFile:
                     data = json.load(jsonFile)
-                    temp=data['usrMessages']
-                    temp.append({'Name': form.name.data, 'Email': form.email.data, 'Subject': form.subject.data, 'Message': form.message.data})
+                    temp = data['usrMessages']
+                    temp.append({'Name': form.name.data, 'Email': form.email.data,
+                                 'Subject': form.subject.data, 'Message': form.message.data})
                 writeJSON(data)
                 flash(u'Your message has been sent. Thank you!', 'message')
                 return redirect(url_for('contact'))
@@ -95,8 +96,7 @@ def contact():
     return render_template('contact.html',
                            menu=menu,
                            form=form,
-                           usrName=session.get('name'),
-                           usrEmail=session.get('email'),
+                           reqMethod=request.method,
                            isValidName=isValidName,
                            isValidEmail=isValidEmail,
                            isValidSubject=isValidSubject,
