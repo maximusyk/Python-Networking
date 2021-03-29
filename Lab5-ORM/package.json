@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@popperjs/core": "^2.9.1",
+    "bootlint": "^1.1.0",
+    "bootstrap-datepicker": "^1.9.0"
+  }
+}

@@ -1,0 +1,80 @@
+{% from "_formhelpers.html" import renderTaskForm,renderTaskList %}
+{% extends "base.html" %}{% set active_page = "list-check" %}
+{% block title %} ToDo List {%endblock%}
+
+{% block body %}
+<!-- <i class='bx bx-task'></i> -->
+<!-- ======= ToDo List Section ======= -->
+<section id="todo" class="todo">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Tasks</h2>
+    </div>
+
+
+    <div class="todo-list m-5 p-2 rounded mx-auto bg-light shadow d-flex flex-column">
+      <!-- Task List -->
+      <div id="ToDos" class="task-list mt-auto shadow-sm p-md-2 m-3">
+
+        {% if not todos %}
+        <div class="alert alert-secondary" role="alert">
+          <h4 class="alert-heading">There are no tasks!</h4>
+          <p>Please, add new task clicked an 'Add new...' button below.</p>
+        </div>
+        {% endif %}
+        {{ renderTaskList(todos) }}
+
+      </div>
+
+      <!-- Modal Form -->
+      <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="formModalLabel"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="view-task"></div>
+              <form action="/todo/create" id="task-form" method="POST" role="form" class="php-email-form" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="row">
+                  <div class="col-md-6">
+                    {{ renderTaskForm(form.title, "Title", reqMethod) }}
+                    {{ renderTaskForm(form.priority, "Priority", reqMethod) }}
+                    {{ renderTaskForm(form.timeline, "TimeLine", reqMethod) }}
+                  </div>
+
+                  <div class="col-md-6">
+                    {{ renderTaskForm(form.description, "Description", reqMethod) }}
+                    <div id="doneBlock">
+                      {{ renderTaskForm(form.is_done, "Is Done", reqMethod) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div id="msg" class="alert" role="alert">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button id="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="add-task-btn" type="submit" form="task-form" class="btn btn-primary">Add</button>
+              <button id="update-task-btn" type="submit" form="task-form" class="btn btn-primary">Update</button>
+              <button id="edit-task-btn" type="button" form="task-form" class="btn btn-warning">Edit</button>
+              <button id="delete-task-btn" type="button" form="task-form" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" id="createForm" class="mt-auto btn btn-lg btn-block btn-primary" data-toggle="modal"
+        data-target="#formModal">Add New</button>
+    </div>
+  </div>
+</section>
+<!-- End ToDo List -->
+
+{% endblock %}

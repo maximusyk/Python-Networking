@@ -1,4 +1,4 @@
 from portfolio import app
-from portfolio import views
+from portfolio import views, models
 
 app.run()

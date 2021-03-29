@@ -1,4 +1,5 @@
-{% from "_formhelpers.html" import render_field %} {% extends "base.html" %}{% set active_page = "envelope" %} {% block title %} Contact {%endblock%} {% block body %}
+{% from "_formhelpers.html" import renderContactForm %} {% extends "base.html" %}{% set active_page = "envelope" %}
+{% block title %} Contact {%endblock%} {% block body %}
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
     <div class="container" data-aos="fade-up">
@@ -33,12 +34,17 @@
                 <form action="{{ url_for('contact') }}" method="POST" role="form" class="php-email-form" novalidate>
                     <div class="form-row">
 
-                        {{form.csrf_token}} {% if session.get('name') is none %} {{ render_field(form.name, "Your Name", reqMethod) }} {{ render_field(form.email, "Your Email", reqMethod) }} {% endif %}
+                        {{form.csrf_token}} {% if session.get('name') is none %}
+                        {{ renderContactForm(form.name, "Your Name", reqMethod) }}
+                        {{ renderContactForm(form.email, "Your Email", reqMethod) }} {% endif %}
                     </div>
-                    {{ render_field(form.subject, "Subject", reqMethod) }} {{ render_field(form.message, "Message", reqMethod) }}
+                    {{ renderContactForm(form.subject, "Subject", reqMethod) }}
+                    {{ renderContactForm(form.message, "Message", reqMethod) }}
                     <div class="mb-3">
-                        {% set messages = get_flashed_messages(with_categories=True) %} {% if messages %} {% for ctg, msg in messages %}
-                        <div class="alert alert-{% if ctg == 'message' %}success{% endif %}{% if ctg == 'error' %}danger{% endif %}" role="alert">
+                        {% set messages = get_flashed_messages(with_categories=True) %} {% if messages %}
+                        {% for ctg, msg in messages %}
+                        <div class="alert alert-{% if ctg == 'message' %}success{% endif %}{% if ctg == 'error' %}danger{% endif %}"
+                            role="alert">
                             {{ msg }}
                         </div>
                         {% endfor %} {% endif %}
