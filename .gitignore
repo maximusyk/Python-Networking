@@ -4,6 +4,10 @@ Lab2-CGI/test.html
 MyResume
 venv/
 __pycache__
+../._.flasknv
+.jshintrc
+package.json
+package-lock.json
 .DS_Store
 ._.DS_Store
 **/.DS_Store
