@@ -5,3 +5,4 @@
 - [Lab3-FlaskPortfolio](Lab3-FlaskPortfolio)
 - [Lab4-WTFForms](Lab4-WTFForms)
 - [Lab5-ORM](Lab5-ORM)
+- [Lab6-Migration](Lab6-Migration)
