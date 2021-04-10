@@ -370,12 +370,12 @@ def todo(todo_id=None):
 # endregion
 
 
-@ app.route("/todo/category/create", methods=["GET", "POST"], endpoint='cat_create')
-@ app.route("/todo/category/<string:cat_name>/update", methods=["GET", "POST"], endpoint='cat_update')
-@ app.route("/todo/category/<string:cat_name>/delete", methods=["GET", "POST"], endpoint='cat_delete')
-@ app.route("/todo/category/<string:cat_name>", methods=["GET", "POST"], endpoint='cat_view')
-@ app.route("/todo/category/<string:cat_name>/permission", methods=["GET", "POST"], endpoint='cat_permission')
-@ app.route("/todo/category/view", methods=["GET", "POST"], endpoint='cat_list')
+@app.route("/todo/category/create", methods=["GET", "POST"], endpoint='cat_create')
+@app.route("/todo/category/<string:cat_name>/update", methods=["GET", "POST"], endpoint='cat_update')
+@app.route("/todo/category/<string:cat_name>/delete", methods=["GET", "POST"], endpoint='cat_delete')
+@app.route("/todo/category/<string:cat_name>", methods=["GET", "POST"], endpoint='cat_view')
+@app.route("/todo/category/<string:cat_name>/permission", methods=["GET", "POST"], endpoint='cat_permission')
+@app.route("/todo/category/view", methods=["GET", "POST"], endpoint='cat_list')
 # region CATEGORY
 def category(cat_name=None):
     form = CategoryForm()
@@ -496,12 +496,12 @@ def category(cat_name=None):
 # endregion
 
 
-@ app.route("/todo/employee/create", methods=["GET", "POST"], endpoint='empl_create')
-@ app.route("/todo/employee/<string:empl_name>/update", methods=["GET", "POST"], endpoint='empl_update')
-@ app.route("/todo/employee/<string:empl_name>/delete", methods=["GET", "POST"], endpoint='empl_delete')
-@ app.route("/todo/employee/<string:empl_name>", methods=["GET", "POST"], endpoint='empl_view')
-@ app.route("/todo/employee/<string:empl_name>/permission", methods=["GET", "POST"], endpoint='empl_permission')
-@ app.route("/todo/employee/view", methods=["GET", "POST"], endpoint='empl_list')
+@app.route("/todo/employee/create", methods=["GET", "POST"], endpoint='empl_create')
+@app.route("/todo/employee/<string:empl_name>/update", methods=["GET", "POST"], endpoint='empl_update')
+@app.route("/todo/employee/<string:empl_name>/delete", methods=["GET", "POST"], endpoint='empl_delete')
+@app.route("/todo/employee/<string:empl_name>", methods=["GET", "POST"], endpoint='empl_view')
+@app.route("/todo/employee/<string:empl_name>/permission", methods=["GET", "POST"], endpoint='empl_permission')
+@app.route("/todo/employee/view", methods=["GET", "POST"], endpoint='empl_list')
 # region EMPLOYEE
 def employee(empl_name=None):
     form = EmployeeForm()
