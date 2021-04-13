@@ -1,62 +1,52 @@
-# Lab-6 Migrate
+# Lab-7 UserSystem+Blueprints
 
-1. Create manage.py file.
-2. Add Category model(id,name) associate it with th Task model. An instance of Task model(some task) can belong to no more than one category. Add CRUD feature to Category.
-3. Add the Employee model(id, name, count_of_completed_tasks) and link the Task model with "many to many" relationship.
-4. List all tasks in descending order of priority and date, adding a category to each of the tasks. Also next to display the employees of each task. When you click on an employee, his profile should be displayed(all his tasks, the number of completed and uncompleted tasks).
+1. Refactor project to work with Blueprints.
+2. Add Registration and Login forms and models.
+3. Make routes to work with forms and models.
+4. Validate forms(Registration: check if user exist, email, password match; Login: check if user exist, password match with db).
 
-###### Add new button
+###### Project Structure
 
-![Add new](./screens/add-new.png)
+![project-structure](./screens/project-structure.png)
 
-###### Add new Task
+###### Example of `__init__.py` file with Blueprint
 
-![New Task](./screens/new-task.png)
+![blue-init](./screens/blue-init.png)
 
-###### Add new Category
+###### Example of view file with Blueprint
 
-![New Category](./screens/new-cat.png)
+![blue-view](./screens/blue-view.png)
 
-###### Add new Employee
+###### Sign up form
 
-![New Employee](./screens/new-empl.png)
+![Sign up form](./screens/sign-up-form.png)
 
-###### Read Category
+###### Sign up form validation overlook
 
-![Read Category](./screens/read-cat.png)
+![up-empty-val](./screens/up-empty-val.png)
 
-###### Read Employee
+![up-val-design](./screens/up-val-design.png)
 
-![Read Employee](./screens/read-empl.png)
+![up-name-val](./screens/up-name-val.png)
 
-###### Update Category
+![up-email-val](./screens/up-email-val.png)
 
-![Update Category](./screens/update-cat.png)
+![up-pwd-val](./screens/up-pwd-val.png)
 
-![Update Category Result](./screens/update-cat-res.png)
+![up-conpwd-val](./screens/up-conpwd-val.png)
 
-###### Update Employee
+![up-success](./screens/up-success.png)
 
-![Update Employee](./screens/update-empl.png)
+###### Sign in form
 
-![Update Employee Result](./screens/update-empl-res.png)
+![sign-in-form](./screens/sign-in-form.png)
 
-###### Delete Category
+###### Sign up form validation overlook
 
-![Delete Category](./screens/del-cat.png)
+![in-val-design](./screens/in-val-design.png)
 
-![Delete Category Result](./screens/del-cat-res.png)
+![in-name-val](./screens/in-name-val.png)
 
-###### Delete Default Category ("Others")
+![in-pwd-val](./screens/in-pwd-val.png)
 
-![Delete Default Category](./screens/del-def-cat.png)
-
-###### Delete Employee
-
-![Delete Employee](./screens/del-empl.png)
-
-![Delete Employee Result](./screens/del-empl-res.png)
-
-###### Delete Default Employee ("Maksym")
-
-![Delete Default Employee](./screens/del-def-empl.png)
+![in-success](./screens/in-success.png)

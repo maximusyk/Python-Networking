@@ -7,7 +7,7 @@ from .about import about
 from .portfolio import portfolio
 from .contact import contact
 from .todo import todo
-# from .users import users
+from .users import users
 
 # Local Modules
 from .database import db
@@ -30,9 +30,9 @@ def create_app():
         app.register_blueprint(portfolio.portfolio_bp)
         app.register_blueprint(contact.contact_bp)
         app.register_blueprint(todo.todo_bp)
-        # app.register_blueprint(users.users_bp)
+        app.register_blueprint(users.users_bp)
 
-    print("\n<<=== URL MAP ===>>")
-    print(app.url_map)
-    print()
+    # print("\n<<=== URL MAP ===>>")
+    # print(app.url_map)
+    # print()
     return app

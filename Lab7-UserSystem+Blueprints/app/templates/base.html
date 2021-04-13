@@ -47,9 +47,9 @@
           id in menu %}
             <li {% if id==active_page %} class="active" {% endif %}>
               {% if caption | e == "User" %}
-                <a href="{{href|e}}" data-toggle="modal" data-target="#userModal">
+                <a onclick="render_modal()" class="btn" data-toggle="modal" data-target="#userModal">
                   <i class="bx bx-{{id|e}}"></i>
-                  <span>{{caption|e}}</span>
+                  <span>Sign up</span>
                 </a>
               {% else %}
                 <a href="{{href|e}}">
@@ -68,14 +68,7 @@
 
     <!-- ======= Main ======= -->
     <main id="main">
-      <div class="modal fade " id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-          <div class="modal-content">
-
-            <div class="panels-container"></div>
-          </div>
-        </div>
-      </div>
+      <div class="modal fade " id="userModal"></div>
       {%block body %}{% endblock %}
     </main>
     <!-- End #main -->

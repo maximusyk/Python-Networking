@@ -75,6 +75,45 @@
   </div>
 
 {% endmacro %}
+
+{% macro renderUserForm(field, placeHolder, reqMethod) %}
+  {% set spanClass = '' %}
+
+  {% if placeHolder == 'Username' %}
+    {% set preIcon = 'fas fa-user' %}
+  {% endif %}
+  {% if placeHolder == 'Email' %}
+    {% set preIcon = 'fas fa-envelope' %}
+  {% endif %}
+
+  {% if placeHolder == 'Password' %}
+    {% set preIcon = 'bx bxs-lock-alt' %}
+    {% set spanClass = 'box-icons' %}
+  {% endif %}
+
+  {% if placeHolder == 'Confirm Password' %}
+    {% set preIcon = 'bx bx-lock-alt' %}
+    {% set spanClass = 'box-icons' %}
+  {% endif %}
+
+  <span class="{{ spanClass }}">
+    <i class="{{ preIcon }}"></i>
+  </span>
+  {% set validateStyle = ' is-valid' if reqMethod == 'POST' else ' '
+  %}
+  {% if placeHolder == 'Remember me' %}
+    <p class="m-0 p-0">
+      {{field(placeholder = placeHolder)}}
+      <label for="{{ field.label.text }}">Remember me</label>
+    </p>
+  {% else %}
+    {{field(placeholder = placeHolder)}}
+    <i class="fas fa-exclamation-circle u_times"></i>
+    <i class="fas fa-check u_check"></i>
+  {% endif %}
+
+{% endmacro %}
+
 {% macro renderTaskList(todos) %}
   {% if todos %}
     {% for items in

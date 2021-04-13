@@ -696,3 +696,134 @@ function todo_label() {
 function todo_value() {
   return todoValue;
 }
+
+// #region USER
+function render_modal() {
+  $.ajax({
+    type: "GET",
+    url: "/user_form",
+    success: function (response) {
+      var json = JSON.parse(response);
+      $("#userModal").html(json.data);
+    },
+    complete: function () {
+      const sign_in_btn = document.querySelector("#sign-in-btn");
+      const sign_up_btn = document.querySelector("#sign-up-btn");
+      const container = document.querySelector(".user-container");
+
+      const submit_up = document.getElementById("sign-up-submit");
+      const submit_in = document.getElementById("sign-in-submit");
+
+      submit_up.addEventListener("click", function (event) {
+        user_request(1);
+        event.preventDefault();
+      });
+
+      submit_in.addEventListener("click", function (event) {
+        user_request(2);
+        event.preventDefault();
+      });
+
+      sign_up_btn.addEventListener("click", () => {
+        container.classList.remove("sign-in-mode");
+        $(".sign-up-form").trigger("reset");
+        $(".sign-up-form .input-field").css("border", "");
+        $(".sign-up-form .u_times").css("display", "none");
+        $(".sign-up-form .u_check").css("display", "none");
+        $(".sign-up-form .input-field span").css("color", "");
+      });
+
+      sign_in_btn.addEventListener("click", () => {
+        container.classList.add("sign-in-mode");
+        $(".sign-in-form").trigger("reset");
+        $(".sign-in-form .input-field").css("border", "");
+        $(".sign-in-form .input-field span").css("color", "");
+        $(".sign-in-form .u_times").css("display", "none");
+        $(".sign-in-form .u_check").css("display", "none");
+      });
+    },
+  });
+}
+
+// $("#sign-up-submit").on("click", function (e) {
+// var ajax_url = "/signup";
+// var form = $(".sign-up-form");
+
+// });
+
+function user_request(type) {
+  // 1 ===> Sign up
+  // 2 ===> Sign in
+  var ajax_url, $form, form, msg;
+  var u_times = document.querySelector(".u_times");
+  var u_check = document.querySelector("u_check");
+  if (Number(type) === 1) {
+    ajax_url = "/signup";
+    form = ".sign-up-form";
+    msg = "registered.";
+  } else {
+    ajax_url = "/signin";
+    $form = $(".sign-in-form");
+    form = ".sign-in-form";
+    msg = "logged in.";
+  }
+  $.ajax({
+    type: $(form).attr("method"),
+    url: ajax_url,
+    data: $(form).serialize(),
+    success: function (response) {
+      var json = JSON.parse(response);
+      if (json.success == "OK") {
+        $(form).trigger("reset");
+
+        $(`${form} .input-field`).css("border", "");
+        $(`${form} .input-field span`).css("color", "");
+        $(`${form} .u_times`).css("display", "none");
+        $(`${form} .u_check`).css("display", "none");
+        alert("You successfully " + msg);
+      } else {
+        for (const key in json.errors) {
+          $("#" + key)
+            .closest(".input-field")
+            .css("border", "1px solid red");
+          $("#" + key)
+            .siblings("span")
+            .css("color", "red");
+          $("#" + key)
+            .siblings(".u_times")
+            .css("display", "block")
+            .tooltip({
+              placement: "left",
+              title: "",
+            })
+            .attr("title", json.errors[key][0])
+            .tooltip("_fixTitle");
+          $("#" + key)
+            .siblings(".u_check")
+            .css("display", "none");
+        }
+        for (const key in json.data) {
+          if (!json.errors.hasOwnProperty(key)) {
+            $("#" + key)
+              .closest(".input-field")
+              .css("border", "1px solid green");
+            $("#" + key)
+              .siblings("span")
+              .css("color", "green");
+            $("#" + key)
+              .siblings(".u_times")
+              .css("display", "none");
+            $("#" + key)
+              .siblings(".u_check")
+              .css("display", "block")
+              .tooltip({
+                placement: "left",
+                title: "Looks good!",
+              });
+          }
+        }
+      }
+    },
+  });
+}
+// #endregion
