@@ -11,7 +11,13 @@
 
 ###### Example of `__init__.py` file with Blueprint
 
-![blue-init](./screens/blue-init.png)
+```__init__.py
+from flask import Blueprint
+
+
+users_bp = Blueprint('users_bp', __name__, template_folder="templates/users")
+
+```
 
 ###### Example of view file with Blueprint
 
