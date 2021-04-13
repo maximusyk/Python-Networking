@@ -11,7 +11,7 @@
 
 ###### Example of `__init__.py` file with Blueprint
 
-```__init__.py
+```python
 from flask import Blueprint
 
 
