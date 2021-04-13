@@ -19,7 +19,7 @@ users_bp = Blueprint('users_bp', __name__, template_folder="templates/users")
 
 ```
 
-###### Example of view file with Blueprint
+###### Example of `views.py` file with Blueprint
 
 ```python
 # Imports
