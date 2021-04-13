@@ -21,7 +21,25 @@ users_bp = Blueprint('users_bp', __name__, template_folder="templates/users")
 
 ###### Example of view file with Blueprint
 
-![blue-view](./screens/blue-view.png)
+```python
+# Imports
+import json
+from app.users import users_bp
+from flask import render_template, request
+
+from .forms import *
+from .models import *
+
+...
+
+# Routes
+@users_bp.route("/signup", methods=["GET", "POST"], endpoint='register')
+@users_bp.route("/signin", methods=["GET", "POST"], endpoint='login')
+@users_bp.route("/user_form", methods=["GET"], endpoint='user_form')
+@users_bp.route("/user")
+
+...
+```
 
 ###### Sign up form
 
