@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% set active_page = "user" %}
+{% block title %}
+  Account
+  {%endblock%}
+  {% block body %}
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>
+          <h1>{{current_user.username}}
+          </h2>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
