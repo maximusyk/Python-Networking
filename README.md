@@ -8,3 +8,4 @@
 - [Lab6-Migrations](Lab6-Migrations)
 - [Lab7-UserSystem+Blueprints](Lab7-UserSystem+Blueprints)
 - [Lab8-FlaskLogin](Lab8-FlaskLogin)
+- [Lab9-UserProfile](Lab9-UserProfile)
