@@ -199,6 +199,7 @@ jQuery(function ($) {
     //#endregion
   });
 
+  // Check if url contains some string for open modal form
   if (window.location.href.indexOf("&auth_req") > -1) {
     $("#userModal").modal("show");
     render_modal();
@@ -210,10 +211,6 @@ jQuery(function ($) {
       confirmButtonText: "Ok",
     });
   }
-
-  // $(window.location.pathname).on("change", () => {
-  //   console.log(window.location.pathname);
-  // });
 });
 
 // #region TODO CRUD
@@ -764,12 +761,6 @@ function render_modal() {
     },
   });
 }
-
-// $("#sign-up-submit").on("click", function (e) {
-// var ajax_url = "/signup";
-// var form = $(".sign-up-form");
-
-// });
 
 function user_request(type) {
   // 1 ===> Sign up

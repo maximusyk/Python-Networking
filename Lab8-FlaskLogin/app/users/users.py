@@ -46,8 +46,7 @@ def users():
 
     if request.endpoint == 'users_bp.register':
         if current_user.is_authenticated:
-            if current_user.is_authenticated:
-                return redirect(url_for('users_bp.account'))
+            return redirect(url_for('users_bp.account'))
         if form_up.validate_on_submit():
             usrname = request.form['username']
             email = request.form['email_up']
