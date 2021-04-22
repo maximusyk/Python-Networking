@@ -7,3 +7,4 @@
 - [Lab5-ORM](Lab5-ORM)
 - [Lab6-Migrations](Lab6-Migrations)
 - [Lab7-UserSystem+Blueprints](Lab7-UserSystem+Blueprints)
+- [Lab8-FlaskLogin](Lab8-FlaskLogin)
