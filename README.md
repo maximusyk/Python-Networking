@@ -9,3 +9,6 @@
 - [Lab7-UserSystem+Blueprints](Lab7-UserSystem+Blueprints)
 - [Lab8-FlaskLogin](Lab8-FlaskLogin)
 - [Lab9-UserProfile](Lab9-UserProfile)
+- [Lab11-FlaskAdmin](Lab11-FlaskAdmin)
+- [Lab12-RestApi](Lab12-RestApi)
+- [Lab13-RestExt](Lab13-RestExt)
