@@ -880,7 +880,6 @@ function user_request(type, user_id) {
     },
   });
 }
-// #endregion
 
 function user_edit(user_id) {
   $.ajax({
@@ -940,3 +939,4 @@ function logout() {
     confirmButtonText: "<a href='/logout'>Ok</a>",
   });
 }
+// #endregion
