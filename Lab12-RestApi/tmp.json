@@ -1,0 +1,20 @@
+[
+  {
+    "title": "API's Task Title",
+    "description": "This is on API's Task description.",
+    "priority": "low",
+    "category_id": 2
+  },
+  {
+    "title": "API's Task Title",
+    "description": "This is on API's Task description.",
+    "priority": "low",
+    "category_id": 2
+  },
+  {
+    "title": "API's Task Title",
+    "description": "This is on API's Task description.",
+    "priority": "low",
+    "category_id": 2
+  }
+]

@@ -266,6 +266,9 @@ def user_signin():
         return redirect(url_for("users_bp.account"))
     else:
         auth = request.authorization
+        print(auth)
+        print(auth.username)
+        print(auth.password)
 
         if not auth or not auth.username or not auth.password:
             return "Could not verify", 401

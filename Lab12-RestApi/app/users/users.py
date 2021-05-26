@@ -6,8 +6,14 @@ import secrets
 from datetime import datetime, timedelta
 from functools import wraps
 
+import jwt
+from app.extensions import csrf
 from app.users import users_bp
-from flask import abort, current_app, g, redirect, render_template, request, url_for
+from flask import abort
+from flask import current_app
+from flask import current_app as app
+from flask import g, redirect, render_template, request, url_for
+from flask.json import jsonify
 from flask_login import current_user, login_required, login_user, logout_user
 from PIL import Image, ImageOps
 
@@ -255,11 +261,31 @@ def user_signup():
 
 
 @users_bp.route("/signin", methods=["GET", "POST"])
+@csrf.exempt
 def user_signin():
     form = LoginForm()
     if current_user.is_authenticated:
         return redirect(url_for("users_bp.account"))
     else:
+        auth = request.authorization
+        print(auth)
+
+        if not auth or not auth.username or not auth.password:
+            return "Could not verify", 401
+
+        user = User.query.filter_by(username=auth.username).first()
+
+        if user.verify_password(auth.password):
+            token = jwt.encode(
+                {"public_id": user.id, "exp": datetime.utcnow() + timedelta(minutes=30)},
+                app.config["SECRET_KEY"],
+                algorithm="HS256",
+            )
+            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
+            print(data)
+            print(token)
+            return jsonify({"token": token})
+
         if form.validate_on_submit():
             email = request.form["email_in"]
             pwd = request.form["password_in"]
