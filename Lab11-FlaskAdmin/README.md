@@ -1,16 +1,10 @@
 # Lab-11 Admin Panel
 
-#### Successully logging in and redirect to profile page
-
 ![account-admin](./screens/account-admin.png)
 
 ![user-list](./screens/user-list.png)
 
-#### Database
-
 ![create-user](./screens/create-user-1.png)
-
-#### User Edit Info
 
 ![create-user](./screens/create-user-2.png)
 
@@ -23,8 +17,6 @@
 ![delete-user](./screens/delete-user.png)
 
 ![flask-home](./screens/flask-home.png)
-
-#### Change Password
 
 ![flask-custom](./screens/flask-custom.png)
 
